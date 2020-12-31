@@ -139,19 +139,18 @@ async def edit_channel(
     response_description="dict of user's membership details or user added",
 )
 async def add_user_to_channel(
-    user_data: dict,
+    user_data["user_id]: str,
     app_user_id: Optional[str] = Header(None),
     app_channel_id: Optional[str] = Header(None),
 ):
     """
     Endpoint to add user to a channel
-
     Args:
-        app_channel_id(str): channel's id user is requesting to join
-        user_data (dict): user_id(str) is user being added,
-                            req_user(str): user sending req(may or may not be admin)
-
-    Returns:
+    user_data["user_id"] (str): user being added or user who is joining channel,
+    app_channel_id(str): channel's id user is requesting to join
+	app_user_id(str) :  user id of user requesting(admin in case of private channel or \
+             same as user_id incase of public)
+     Returns:
         membership(dict): membership of user is returned
     """
     try:
